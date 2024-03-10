@@ -1,0 +1,54 @@
+<featureType>
+  <id>FeatureTypeInfoImpl-4339f960:18e220475f5:-7ff9</id>
+  <name>polaruang_rtrwbanyuasin</name>
+  <nativeName>polaruang_rtrwbanyuasin</nativeName>
+  <namespace>
+    <id>NamespaceInfoImpl-4339f960:18e220475f5:-7ffb</id>
+  </namespace>
+  <title>polaruang_rtrwbanyuasin</title>
+  <keywords>
+    <string>features</string>
+    <string>polaruang_rtrwbanyuasin</string>
+  </keywords>
+  <srs>EPSG:32748</srs>
+  <nativeBoundingBox>
+    <minx>393127.1875</minx>
+    <maxx>563512.9375</maxx>
+    <miny>9649784.0</miny>
+    <maxy>9820166.0</maxy>
+  </nativeBoundingBox>
+  <latLonBoundingBox>
+    <minx>104.03814602251151</minx>
+    <maxx>105.5716331808287</maxx>
+    <miny>-3.1684798271663808</miny>
+    <maxy>-1.6267800588883115</maxy>
+    <crs>EPSG:4326</crs>
+  </latLonBoundingBox>
+  <projectionPolicy>FORCE_DECLARED</projectionPolicy>
+  <enabled>true</enabled>
+  <metadata>
+    <entry key="elevation">
+      <dimensionInfo>
+        <enabled>false</enabled>
+      </dimensionInfo>
+    </entry>
+    <entry key="time">
+      <dimensionInfo>
+        <enabled>false</enabled>
+      </dimensionInfo>
+    </entry>
+    <entry key="cachingEnabled">false</entry>
+  </metadata>
+  <store class="dataStore">
+    <id>DataStoreInfoImpl-4339f960:18e220475f5:-7ffa</id>
+  </store>
+  <serviceConfiguration>false</serviceConfiguration>
+  <simpleConversionEnabled>false</simpleConversionEnabled>
+  <maxFeatures>0</maxFeatures>
+  <numDecimals>0</numDecimals>
+  <padWithZeros>false</padWithZeros>
+  <forcedDecimal>false</forcedDecimal>
+  <overridingServiceSRS>false</overridingServiceSRS>
+  <skipNumberMatched>false</skipNumberMatched>
+  <circularArcPresent>false</circularArcPresent>
+</featureType>
