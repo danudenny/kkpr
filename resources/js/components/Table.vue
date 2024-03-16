@@ -243,7 +243,7 @@ export default {
     methods: {
         getDataPolaRuang() {
             this.isLoading = true;
-            fetch("http://localhost:8000/api/pola-ruang")
+            fetch("http://103.127.133.120:81/api/pola-ruang")
                 .then((response) => response.json())
                 .then((data) => {
                     this.polaRuang = data.data;
@@ -297,21 +297,21 @@ export default {
             }
         },
         getNameObj() {
-            fetch("http://localhost:8000/api/pola-ruang/name-obj")
+            fetch("http://103.127.133.120:81/api/pola-ruang/name-obj")
                 .then((response) => response.json())
                 .then((data) => {
                     this.nameObject = data;
                 });
         },
         getNameKecamatan() {
-            fetch("http://localhost:8000/api/pola-ruang/kecamatan")
+            fetch("http://103.127.133.120:81/api/pola-ruang/kecamatan")
                 .then((response) => response.json())
                 .then((data) => {
                     this.nameKecamatan = data;
                 });
         },
         getNameJenis() {
-            fetch("http://localhost:8000/api/pola-ruang/jenis-sarana")
+            fetch("http://103.127.133.120:81/api/pola-ruang/jenis-sarana")
                 .then((response) => response.json())
                 .then((data) => {
                     this.nameJenis = data;
@@ -326,7 +326,7 @@ export default {
             };
 
             this.isLoading = true;
-            fetch("http://localhost:8000/api/pola-ruang/search", {
+            fetch("http://103.127.133.120:81/api/pola-ruang/search", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
