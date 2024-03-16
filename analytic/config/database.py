@@ -3,11 +3,9 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from loguru import logger
 
-SQLALCHEMY_DATABASE_URL = "postgresql://postgres:postgres@localhost:5432/kkpr_db"
+SQLALCHEMY_DATABASE_URL = "postgresql://postgres:Password123!@localhost:5432/kkpr_db"
 
-engine = create_engine(
-    SQLALCHEMY_DATABASE_URL
-)
+engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
 try:
     engine.connect()
