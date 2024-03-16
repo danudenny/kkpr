@@ -21,10 +21,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::group(['prefix' => 'pola-ruang'], function () {
-    Route::get('/', [PolaRuangController::class, 'index']);
-    Route::get('/name-obj', [PolaRuangController::class, 'getNameObj']);
-    Route::get('/kecamatan', [PolaRuangController::class, 'getKecamatan']);
-    Route::get('/jenis-sarana', [PolaRuangController::class, 'getJenisSarana']);
-    Route::post('/search', [PolaRuangController::class, 'search']);
+Route::middleware(['cors'])->group(function () {
+    Route::get('/pola-ruang', [PolaRuangController::class, 'index']);
+    Route::get('/pola-ruang/name-obj', [PolaRuangController::class, 'getNameObj']);
+    Route::get('/pola-ruang/kecamatan', [PolaRuangController::class, 'getKecamatan']);
+    Route::get('/pola-ruang/jenis-sarana', [PolaRuangController::class, 'getJenisSarana']);
+    Route::post('/pola-ruang/search', [PolaRuangController::class, 'search']);
 });
