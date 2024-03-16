@@ -7,7 +7,7 @@
                 {{ title }}
             </h1>
         </div>
-        <div :id="title_id" class="hidden">
+        <div :id="title_id" class="">
             <hr class="border-t-2 border-green-500" />
             <div
                 class="p-4 overflow-auto bg-green-200 border-b-4 border-green-500 max-h-80"
@@ -31,17 +31,16 @@ export default {
             required: true,
         },
     },
+    mounted() {
+        const x = document.getElementById(this.title_id);
+        x.classList.add("hidden");
+    },
     methods: {
         toggleAccordion(id) {
             const x = document.getElementById(id);
             x.classList.toggle("hidden");
 
-            const otherAccordions = [
-                "legend",
-                "layers",
-                "information",
-                "filters",
-            ];
+            const otherAccordions = ["Legends", "Layers"];
 
             otherAccordions.forEach((accordion) => {
                 if (accordion !== id) {

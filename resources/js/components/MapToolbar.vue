@@ -177,7 +177,7 @@ export default {
         },
         drawPolygon() {
             this.isDrawPolygon = !this.isDrawPolygon;
-            this.$emit("drawPolygon");
+            this.$emit("drawPolygon", this.isDrawPolygon);
         },
         drawMarker() {
             this.isDrawMarker = !this.isDrawMarker;

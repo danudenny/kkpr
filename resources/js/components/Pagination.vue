@@ -9,6 +9,7 @@
                 :disabled="currentPage < 2"
                 class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-700 bg-white border border-gray-300 rounded-md"
             >
+                <VIcon name="arrow-left-s-line" v-if="currentPage > 2" />
                 Previous
             </button>
             <button
@@ -16,6 +17,7 @@
                 :disabled="currentPage >= totalPages"
                 class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-700 bg-white border border-gray-300 rounded-md"
             >
+                <VIcon name="arrow-right-s-line" />
                 Next
             </button>
         </div>
@@ -43,13 +45,15 @@
                         :disabled="currentPage < 2"
                         class="relative inline-flex items-center px-2 py-2 text-sm font-semibold text-gray-500 bg-white border border-gray-300 rounded-l-md hover:bg-gray-50"
                     >
-                        <span>Previous</span>
+                        <VIcon name="arrow-left-s-line" />
+                        <span>Prev</span>
                     </button>
                     <button
                         @click="nextPage"
                         :disabled="currentPage >= totalPages"
                         class="relative inline-flex items-center px-2 py-2 text-sm font-semibold text-gray-500 bg-white border border-gray-300 rounded-r-md hover:bg-gray-50"
                     >
+                        <VIcon name="arrow-right-s-line" />
                         <span>Next</span>
                     </button>
                 </nav>
@@ -59,6 +63,11 @@
 </template>
 
 <script>
+import { addIcons } from "oh-vue-icons";
+import { RiArrowLeftSLine, RiArrowRightSLine } from "oh-vue-icons/icons";
+
+addIcons(RiArrowLeftSLine, RiArrowRightSLine);
+
 export default {
     name: "Pagination",
     props: {

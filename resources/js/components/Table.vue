@@ -3,10 +3,22 @@
         class="bottom-0 right-0 z-40 w-4/5 p-3 overflow-auto bg-neutral-50 h-[350px] shadow-md"
     >
         <div class="p-4">
+            <!-- Close button -->
+
             <div>
-                <h1 class="text-xl font-bold text-gray-900">
-                    Tabel Pola Ruang RTRW Kabupaten Banyuasin
-                </h1>
+                <div class="flex items-center justify-between">
+                    <h1 class="text-xl font-bold text-gray-900">
+                        <VIcon name="ri-table-line" scale="1.5" fill="green" />
+                        Tabel Pola Ruang RTRW Kabupaten Banyuasin
+                    </h1>
+                    <button
+                        class="p-2 text-white"
+                        @click="toggleTableSelector"
+                        title="Close Table Selector"
+                    >
+                        <VIcon name="oi-x-circle-fill" fill="red" scale="1.5" />
+                    </button>
+                </div>
                 <div class="flex items-center gap-2">
                     <div class="flex items-center justify-between my-4">
                         <div class="flex flex-col items-center">
@@ -66,12 +78,29 @@
                             </select>
                         </div>
                     </div>
-                    <div>
+                    <div class="flex gap-1">
                         <button
                             class="px-3 py-1 font-semibold text-white bg-teal-500 border-r-4 border-teal-600 rounded-md hover:bg-teal-600"
                             @click="searchDataPolaRuang"
                         >
+                            <VIcon name="ri-search-line" scale=".8" />
                             Search
+                        </button>
+                        <button
+                            class="px-3 py-1 font-semibold text-white bg-red-500 border-r-4 border-red-600 rounded-md hover:bg-red-600"
+                            @click="resetDataPolaRuang"
+                        >
+                            <VIcon name="ri-refresh-line" scale=".8" />
+                            Reset
+                        </button>
+                        <!-- Show on map -->
+                        <button
+                            v-show="isSearch"
+                            class="px-3 py-1 font-semibold text-white bg-green-500 border-r-4 border-green-600 rounded-md hover:bg-green-600"
+                            @click="showOnMap"
+                        >
+                            <VIcon name="ri-road-map-line" scale=".8" />
+                            Show on Map
                         </button>
                     </div>
                 </div>
@@ -93,11 +122,18 @@
                 <tbody>
                     <div
                         v-if="isLoading"
-                        class="absolute inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-50"
+                        class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
                     >
                         <div
-                            class="w-20 h-20 border-8 border-t-8 border-gray-200 rounded-full animate-spin"
-                        ></div>
+                            class="flex items-center gap-4 p-4 bg-white rounded-lg shadow-lg"
+                        >
+                            <i
+                                class="text-green-500 fas fa-spinner fa-spin fa-2x"
+                            ></i>
+                            <span class="text-lg font-semibold text-green-500"
+                                >Loading...</span
+                            >
+                        </div>
                     </div>
                     <tr
                         v-for="(pola, index) in polaRuang"
@@ -155,6 +191,22 @@
 
 <script>
 import Pagination from "./Pagination.vue";
+import { addIcons } from "oh-vue-icons";
+import {
+    OiXCircleFill,
+    RiRoadMapLine,
+    RiRefreshLine,
+    RiSearchLine,
+    RiTableLine,
+} from "oh-vue-icons/icons";
+
+addIcons(
+    OiXCircleFill,
+    RiRoadMapLine,
+    RiRefreshLine,
+    RiSearchLine,
+    RiTableLine
+);
 
 export default {
     name: "Table",
@@ -179,6 +231,7 @@ export default {
             nameObject: [],
             nameKecamatan: [],
             nameJenis: [],
+            isSearch: false,
         };
     },
     mounted() {
@@ -265,11 +318,13 @@ export default {
                 });
         },
         searchDataPolaRuang() {
+            this.isSearch = true;
             const filter = {
                 nameObj: document.getElementById("filterNameObj").value,
                 jenisSarana: document.getElementById("filterJenisSarana").value,
                 kecamatan: document.getElementById("filterKecamatan").value,
             };
+
             this.isLoading = true;
             fetch("http://localhost:8000/api/pola-ruang/search", {
                 method: "POST",
@@ -291,6 +346,31 @@ export default {
                     this.pagination.to = data.to;
                     this.isLoading = false;
                 });
+        },
+        resetDataPolaRuang() {
+            this.getDataPolaRuang();
+            const filter = {
+                nameObj: (document.getElementById("filterNameObj").value = ""),
+                jenisSarana: (document.getElementById(
+                    "filterJenisSarana"
+                ).value = ""),
+                kecamatan: (document.getElementById("filterKecamatan").value =
+                    ""),
+            };
+
+            this.$emit("resetDataPolaRuang");
+        },
+        toggleTableSelector() {
+            this.$emit("toggleTableSelector");
+        },
+        showOnMap() {
+            const filter = {
+                nameObj: document.getElementById("filterNameObj").value,
+                jenisSarana: document.getElementById("filterJenisSarana").value,
+                kecamatan: document.getElementById("filterKecamatan").value,
+            };
+
+            this.$emit("showOnMap", filter);
         },
     },
 };
