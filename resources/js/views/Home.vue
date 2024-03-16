@@ -260,7 +260,7 @@ export default {
                 const long = e.latlng.lng;
                 axios
                     .get(
-                        `http://localhost:8082/api/analytics/filter-geojson?lat=${lat}&long=${long}`
+                        `http://103.127.133.120:8082/api/analytics/filter-geojson?lat=${lat}&long=${long}`
                     )
                     .then((response) => {
                         const features = response.data.features;
@@ -360,7 +360,7 @@ export default {
             const formData = new FormData();
             formData.append("file", file);
             fetch(
-                "http://localhost:8082/api/analytics/clip-shapefiles-from-shp",
+                "http://103.127.133.120:8082/api/analytics/clip-shapefiles-from-shp",
                 {
                     method: "POST",
                     body: formData,
