@@ -11,11 +11,27 @@ WORKDIR /app/src
 # CREATE .env file in /app
 RUN touch /app/.env
 
-RUN echo "DB_HOST=" >> /app/.env
-RUN echo "DB_PORT=" >> /app/.env
-RUN echo "DB_USERNAME=" >> /app/.env
-RUN echo "DB_PASSWORD=" >> /app/.env
-RUN echo "DB_DATABASE=" >> /app/.env
+# set environment variables
+ARG DB_HOST
+ARG DB_PORT
+ARG DB_USERNAME
+ARG DB_PASSWORD
+ARG DB_DATABASE
+
+# write environment variables to .env file
+RUN echo "DB_HOST=$DB_HOST" >> /app/.env
+RUN echo "DB_PORT=$DB_PORT" >> /app/.env
+RUN echo "DB_USERNAME=$DB_USERNAME" >> /app/.env
+RUN echo "DB_PASSWORD=$DB_PASSWORD" >> /app/.env
+RUN echo "DB_DATABASE=$DB_DATABASE" >> /app/.env
+
+# set environment variables
+ENV DB_HOST=$DB_HOST
+ENV DB_PORT=$DB_PORT
+ENV DB_USERNAME=$DB_USERNAME
+ENV DB_PASSWORD=$DB_PASSWORD
+ENV DB_DATABASE=$DB_DATABASE
+
 
 # Copy the current directory contents into the container at /app
 COPY . /app/src
